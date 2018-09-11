@@ -1,0 +1,22 @@
+# Initial Setup:
+
+Hamiltonians = [[0, .5],
+               [.5, 0]]
+Initial State = [[1/sqrt(2)],
+		 [1/sqrt(2)]]
+POVMs = [[[.3,0],
+          [0,.7]],
+         [[.7,0],
+          [0,.3]]]
+delta_t = .01
+
+# Basic Tests:
+
+test_run_one_step():
+    Internal State after 1 run:
+	[[0.70709794-0.00353552j],
+	 [0.70709794-0.00353552j]])
+
+    Should have produced the propogator (after exponentiating):
+        [[0.9999875+0.j        , 0.       -0.00499998j],
+         [0.       -0.00499998j, 0.9999875+0.j        ]]
