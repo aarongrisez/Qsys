@@ -21,9 +21,9 @@ Please reach out to us at [http://qhord.com/](http://qhord.com/) or email Aaron 
 
 ## Authors
 
-* **Aaron Grisez** - *Initial work* - [Aaron Grisez](https://github.com/aarongrisez)
+* **Aaron Grisez** - *Initial work, Front-End* - [Aaron Grisez](https://github.com/aarongrisez)
 * **Michael Seaman** - *Just the README* [Michael Seaman](https://github.com/michaelseaman)
-* **Sam Kagan** - *Fixing a lot of things* [Sam Kagan](https://github.com/HungryJoe)
+* **Sam Kagan** - *Library Coding* [Sam Kagan](https://github.com/HungryJoe)
 
 ## License
 
