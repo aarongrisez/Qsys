@@ -22,7 +22,8 @@ Its documentation can be found [here](http://eigen.tuxfamily.org/dox/GettingStar
 The `src` folder contains all source code, which at the moment is just the following:
 * `Eigen` - the library we're using for linear algebra (discussed in the  [Prerequisites](Prerequisites) section above)
 * `eigen3.3.5-raw` - raw copy of the Eigen library as downloaded from [here](http://bitbucket.org/eigen/eigen/get/3.3.5.zip).
-* `test.cpp` - a simple test file for the Eigen library
+* `test.cpp` - a test file, which now generates a random matrix, exponentiates it to get a propagator,
+and applies that propagator to a state-vector in a loop
 
 ### Building
 To build from source, open the [src](src) folder. From there, you have 2 options:
