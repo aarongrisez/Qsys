@@ -19,7 +19,7 @@ Its documentation can be found [here](http://eigen.tuxfamily.org/dox/GettingStar
 `LICENSE` - the MIT license for this project  
 `math.pdf` - an outline of the mathematics being implemented by this library  
 `QsysLibraryInterface.md` - a brief description of what the API will be  
-`FunctionSpecification.md` - a specification for how functions will be written in initialization files
+`FunctionSpecification.md` - a specification for how functions will be written in initialization files  
 The `src` folder contains all source code, which at the moment is just the following:
 * `Eigen` - the library we're using for linear algebra (discussed in the  [Prerequisites](Prerequisites) section above)
 * `eigen3.3.5-raw` - raw copy of the Eigen library as downloaded from [here](http://bitbucket.org/eigen/eigen/get/3.3.5.zip).
