@@ -1,2 +1,2 @@
 test: test.cpp
-	g++ -I Eigen/ test.cpp -o test
+	g++ -std=c++11 -I Eigen/ test.cpp -o test
