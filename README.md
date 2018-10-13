@@ -14,6 +14,10 @@ This library uses the linear algebra library [Eigen](http://eigen.tuxfamily.org/
 For now, the whole library download is also included in [src/eigen3.3.5-raw](src/eigen3.3.5-raw).
 Its documentation can be found [here](http://eigen.tuxfamily.org/dox/GettingStarted.html).
 
+### Packages
+#### Debian
+```$ apt install libeigen3-dev```
+
 ### Files
 `README.md` - this file  
 `LICENSE` - the MIT license for this project  
@@ -21,8 +25,6 @@ Its documentation can be found [here](http://eigen.tuxfamily.org/dox/GettingStar
 `QsysLibraryInterface.md` - a brief description of what the API will be  
 `FunctionSpecification.md` - a specification for how functions will be written in initialization files  
 The `src` folder contains all source code, which at the moment is just the following:
-* `Eigen` - the library we're using for linear algebra (discussed in the  [Prerequisites](Prerequisites) section above)
-* `eigen3.3.5-raw` - raw copy of the Eigen library as downloaded from [here](http://bitbucket.org/eigen/eigen/get/3.3.5.zip).
 * `test.cpp` - a test file, which now generates a random matrix, exponentiates it to get a propagator,
 and applies that propagator to a state-vector in a loop
 
