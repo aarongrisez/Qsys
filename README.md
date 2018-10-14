@@ -10,13 +10,43 @@ Demo: [Youtube](https://youtu.be/WgCajz7P-M0)
 ## Getting Started
 
 ### Prerequisites
-This library uses the linear algebra library [Eigen](http://eigen.tuxfamily.org/), which is already installed in [src/Eigen](src/Eigen).
-For now, the whole library download is also included in [src/eigen3.3.5-raw](src/eigen3.3.5-raw).
+This library uses the linear algebra library [Eigen](http://eigen.tuxfamily.org/), which is already installed in [src/Eigen](src/Eigen). The depdencies for this project use conan to download the required depdenices.
 Its documentation can be found [here](http://eigen.tuxfamily.org/dox/GettingStarted.html).
 
-### Packages
-#### Debian
-```$ apt install libeigen3-dev```
+#### Git
+
+this project has some submodule that will need to be cloned
+
+```
+git submodule update --init --recursive
+```
+
+### Conan
+
+[conan](https://conan.io/) is a package manager for C/C++ libraries. 
+
+```
+conana install .
+```
+
+This should install the required libraries that Qsys will need to use when building.
+
+#### Scons (cross platform)
+
+Godot will need to be built first before building QSys. it's under ```/godot-cpp```. more information can be found [here](https://github.com/GodotNativeTools/godot-cpp). It's already avalible as a submodule so there is no need to clone godot-cpp. 
+
+```
+scons generate_bindings=yes
+```
+
+scons is used to compile QSys:
+
+```
+scons platform=windows/linux/osx
+```
+
+This should create the required shared libraries under: ```bin/{platform}/libQSys.*```. 
+
 
 ### Files
 `README.md` - this file  
@@ -28,20 +58,14 @@ The `src` folder contains all source code, which at the moment is just the follo
 * `test.cpp` - a test file, which now generates a random matrix, exponentiates it to get a propagator,
 and applies that propagator to a state-vector in a loop
 
-### Building
-To build from source, open the [src](src) folder. From there, you have 2 options:
-* Using `make` if you have it installed, or
-* Running `g++ -I Eigen/ tests.cpp -o test` from the terminal.
-
-### Running
-From the [src](src) folder:  
-`./test`
 
 # Contributing
 
 Please reach out to us at [http://qhord.com/](http://qhord.com/) or email Aaron at aaron@qhord.com for info about contributing.
 
-## Authors
+## Maintainers
+
+The current maintainers of this repository are:
 
 * **Aaron Grisez** - *Initial work, Front-End* - [Aaron Grisez](https://github.com/aarongrisez)
 * **Michael Seaman** - *Just the README* [Michael Seaman](https://github.com/michaelseaman)
@@ -50,3 +74,4 @@ Please reach out to us at [http://qhord.com/](http://qhord.com/) or email Aaron 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+

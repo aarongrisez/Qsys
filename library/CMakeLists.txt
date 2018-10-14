@@ -2,7 +2,7 @@ SET(SOURCES
         ../library/src/test.cpp)
 
 SET(INCLUDE
-        ../library/include/HamHelper.h
+        include/HamHelper.hpp
         ../library/include/json.hpp)
 
 
