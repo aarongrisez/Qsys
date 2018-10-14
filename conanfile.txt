@@ -1,0 +1,6 @@
+[requires]
+eigen/3.3.5@conan/stable
+
+[generators]
+txt
+scons
