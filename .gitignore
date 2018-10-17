@@ -1,5 +1,61 @@
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+ Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+*.os
+
+# Distribution / packaging
+.Python
+build/**
+bootstrap/**
+.idea/
+src/build/**
+
+
+# Translations
+*.mo
+*.pot
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+
+# SCons files
+.sconsign.*
+
+# Tool output
+.coverage
+htmlcov
+
+# VS Code
+.vscode
+
+# Editor junk
+*.swp
+*.bkp
+*.bak
+*~
+
+# build directory
+bin
+
+#conan
+SConscript_conan
+conanbuildinfo.*
+conaninfo.txt
+
+#Jetbrain products
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -64,36 +120,3 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
-
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app

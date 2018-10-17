@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <eigen3/Eigen/Dense>
-#include "../include/HamHelper.h"
+#include "../include/HamHelper.hpp"
 #include <complex>
 //#include <math.h>
 #include <functional>

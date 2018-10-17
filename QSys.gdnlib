@@ -1,0 +1,17 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+
+[entry]
+
+X11.64="res://bin/linux/libQSys.so"
+Windows.64="res://bin/win64/libQSys.dll"
+OSX.64="res://bin/osx/libQSys.dylib"
+
+[dependencies]
+
+X11.64=[]
+Windows.64=[]
+OSX.64=[]
