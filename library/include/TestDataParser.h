@@ -4,9 +4,11 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <eigen3/Eigen/Dense>
 
 using namespace std;
 using namespace nlohmann;
+using namespace Eigen;
 
 
 #ifndef TEST_DATA_PARSER_H
@@ -16,14 +18,14 @@ class TestDataParser {
   private:
     string filename;
     json raw_data;
-    vector<vector<complex<double>>> test_results;
+    vector<Vector3cd> test_results;
     complex<double> parse_complex(string s);
 
   public:
     TestDataParser(string filename);
     ~TestDataParser();
     int parseJson();
-    vector<vector<complex<double>>> get_test_results();
+    vector<Vector3cd> get_test_results();
 };
 
 TestDataParser::TestDataParser(string filename) {
@@ -32,7 +34,7 @@ TestDataParser::TestDataParser(string filename) {
 
 TestDataParser::~TestDataParser(){}
 
-vector<vector<complex<double>>> TestDataParser::get_test_results() {
+vector<Vector3cd> TestDataParser::get_test_results() {
   return test_results;
 }
 
@@ -54,7 +56,7 @@ int TestDataParser::parseJson() {
 
   //Read in the test results
   json rawResults = raw_data["simulationData"];
-  test_results = vector<vector<complex<double>>>(simLength);
+  test_results = vector<Vector3cd>(simLength);
     cout << "Hello?"<<endl;
 
   for (int i = 0; i<simLength; ++i) {
@@ -67,7 +69,7 @@ int TestDataParser::parseJson() {
 
     size_t pos = 0;
     size_t len = 0;
-    vector<complex<double>> result(3);
+    Vector3cd result();
 
     for(int j=0; j<3; ++j) {
       cout<<"Complex number " << j << endl;

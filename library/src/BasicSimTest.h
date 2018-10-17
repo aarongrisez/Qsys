@@ -2,6 +2,7 @@
 #include "BasicSim.h"
 #include <complex>
 #include <eigen3/Eigen/Dense>
+#include <vector>
 
 using namespace std;
 using namespace Eigen;
@@ -24,6 +25,19 @@ public:
     psi0 << complex<double>(0,0), complex<double>(1,0), complex<double>(0,0);
 
     BasicSim sim(hamiltonian, psi0, DT);
-    sim.runSim(FINAL_TIME);
+    TestDataParser test(argv[1]);
+    test.parseJson();
+
+
+    vector<Vector3cd> sim_results = sim.runSim(FINAL_TIME);
+    vector<Vector3cd> actual_results = test.get_test_results();
+
+    TS_ASSERT_EQUALS(sim_results.size(), actual_results.size());
+
+    for(int i=0; i<sim_results.size(); ++i) {
+      for(int j=0; j<3; ++j) {
+        TS_ASSERT_EQUALS(sim_results[i][j], actual_results[i][j]);
+      }
+    }
   }
 }
