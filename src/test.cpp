@@ -4,15 +4,14 @@
 
 #include <iostream>
 #include <fstream>
-#include <eigen3/Eigen/Dense>
+#include <Dense>
+#include "HamHelper.h"
 #include <complex>
 //#include <math.h>
 #include <functional>
 #include <vector>
 #include <string>
-#include "../include/json.hpp"
-
-#include "../include/BasicSim.h"
+#include "json.hpp"
 
 using namespace std;
 using namespace Eigen;
@@ -21,9 +20,9 @@ using namespace nlohmann;
 //MatrixXcd evaluateHammy(vector<function<complex<double>(complex<double>)>> &h, double t);
 
 int main(int argc, char** argv) {
-  const float DT = 0.01;
-  const int FINAL_TIME = 50;
-  /*
+  const float DT = 1/60.0;
+  const float SIM_LENGTH = 100;
+
   //Take in filename from command line
 	//Check for arguments
 	if(argc!=2)
@@ -82,17 +81,22 @@ int main(int argc, char** argv) {
     //so loop terminates when i*timStep >= finalTime).
   //If test[i] != psi, print out the discrepancy with a message and exit.
 
-  MatrixXcd hamiltonian(3, 3);
-  hamiltonian << complex<double>(0.4147272586872562, 0.0), complex<double>(0.2849716083377269, 0.01667585975115329), complex<double>(0.5792858065923596, 0.04493069203570912),
-                 complex<double>(0.2849716083377269, -0.01667585975115329), complex<double>(0.17632777798815139, 0), complex<double>(0.44357036381369286, 0.03592326101885296),
-                 complex<double>(0.5792858065923596, -0.04493069203570912), complex<double>(0.44357036381369286, -0.03592326101885296), complex<double>(0.7027700178027618, 0);
+  MatrixXcd hamiltonian = MatrixXcd::Random(3,3) * 10;
+
+  MatrixXcd propagator = (-1*DT*hamiltonian).array().exp().matrix();
+
+  VectorXcd psi0 = VectorXcd::Random(3) * 100;
+
+  cout << "H = " << endl << hamiltonian << endl;
+  cout << "U = " << endl << propagator << endl << endl;
 
 
-  VectorXcd psi0(3);
-  psi0 << complex<double>(0,0), complex<double>(1,0), complex<double>(0,0);
-
-  BasicSim sim(hamiltonian, psi0, DT);
-  sim.runSim(FINAL_TIME);
+  VectorXcd psi = psi0;
+  for (double i = 0; i < SIM_LENGTH * DT; i+=DT) {
+    cout << "At time = " << i << ", psi = " << endl << psi << endl;
+    psi = propagator * psi;
+    cin.get();
+  }
 }
 
 
