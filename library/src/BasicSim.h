@@ -26,13 +26,16 @@ class BasicSim {
 
     ~BasicSim(){}
 
-    void runSim(int final_time) {
+    vector<Vector3cd> runSim(int final_time) {
+        vector<Vector3cd> results(final_time*dt);
         VectorXcd psi = psi0;
         for (float i = 0; i < final_time*dt; i+=dt) {
-          cout << "At time = " << i << ", psi = " << endl << psi << endl;
+          results[i] = psi;
           psi = propagator * psi;
           cin.get();
         }
+
+        return results;
     }
 };
 
