@@ -21,19 +21,19 @@ this project has some submodule that will need to be cloned
 git submodule update --init --recursive
 ```
 
-### Conan
+#### Conan
 
-[conan](https://conan.io/) is a package manager for C/C++ libraries. 
+[conan](https://conan.io/) is a package manager for C/C++ libraries.
 
 ```
-conana install .
+conan install .
 ```
 
 This should install the required libraries that Qsys will need to use when building.
 
 #### Scons (cross platform)
 
-Godot will need to be built first before building QSys. it's under ```/godot-cpp```. more information can be found [here](https://github.com/GodotNativeTools/godot-cpp). It's already avalible as a submodule so there is no need to clone godot-cpp. 
+Godot will need to be built first before building QSys. it's under ```/godot-cpp```. more information can be found [here](https://github.com/GodotNativeTools/godot-cpp). It's already available as a submodule so there is no need to clone godot-cpp.
 
 ```
 scons generate_bindings=yes
@@ -45,19 +45,30 @@ scons is used to compile QSys:
 scons platform=windows/linux/osx
 ```
 
-This should create the required shared libraries under: ```bin/{platform}/libQSys.*```. 
+This should create the required shared libraries under: ```bin/{platform}/libQSys.*```.  
+**Note:** When running the above script, select your operating system from the list
+(ie if you're compiling on Linux, run `scons platform=linux`).
 
-
-### Files
+## Files
 `README.md` - this file  
 `LICENSE` - the MIT license for this project  
 `math.pdf` - an outline of the mathematics being implemented by this library  
 `QsysLibraryInterface.md` - a brief description of what the API will be  
 `FunctionSpecification.md` - a specification for how functions will be written in initialization files  
-The `src` folder contains all source code, which at the moment is just the following:
-* `test.cpp` - a test file, which now generates a random matrix, exponentiates it to get a propagator,
-and applies that propagator to a state-vector in a loop
+`library` - a folder containing all the code. Within it there are three subfolders:
+  * `include` - the header files needed for the tests and source code
+  * `src` - the source code for the library
+  * `tests` - tests for the source code
 
+## Testing
+We are currently using [CxxTest](https://cxxtest.com/) as our testing framework.
+For now, tests are located in `library/src` as header files ending in `Test.h`.  
+To create a test runner from them, one should (though admittedly this has yet to be tested)
+be able to run
+```
+../include/cxxtest-4.3/run/cxxtestgen
+```
+from `library/src`.
 
 # Contributing
 
@@ -74,4 +85,3 @@ The current maintainers of this repository are:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
