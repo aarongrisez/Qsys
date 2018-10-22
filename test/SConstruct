@@ -1,0 +1,10 @@
+Import('env')
+test_env = env.Clone()
+
+test_env.MergeFlags(test_env['package_manager']['gtest'])
+
+test_env.Append(CPPPATH=['include'])
+test_env.Append(LIBS=['QSys'])
+
+test = test_env.Program('test','main.cpp')
+Default(test)
