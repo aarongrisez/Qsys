@@ -81,6 +81,7 @@ The current maintainers of this repository are:
 * **Aaron Grisez** - *Initial work, Front-End* - [Aaron Grisez](https://github.com/aarongrisez)
 * **Michael Seaman** - *Just the README* [Michael Seaman](https://github.com/michaelseaman)
 * **Sam Kagan** - *Library Coding* [Sam Kagan](https://github.com/HungryJoe)
+* **Michael Pollind** - *Library Coding* [Michael Pollind](https://github.com/pollend)
 
 ## License
 
