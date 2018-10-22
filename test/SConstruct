@@ -6,5 +6,5 @@ test_env.MergeFlags(test_env['package_manager']['gtest'])
 test_env.Append(CPPPATH=['include'])
 test_env.Append(LIBS=['QSys'])
 
-test = test_env.Program('test','main.cpp')
-Default(test)
+test_prog = test_env.Program(target=env['build_root'].abspath + '/Qsys_test',source = 'main.cpp')
+Default(test_prog)
