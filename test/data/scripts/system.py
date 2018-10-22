@@ -4,8 +4,7 @@ Simulation Data Generator
 import numpy as np
 import scipy
 import json
-import matplotlib.pyplot as plt
-from scipy.integrate import ode
+from povm import POVM
 
 class System(object):
 
@@ -26,6 +25,35 @@ class System(object):
         self.history = [self.initialState]      #A record of the currentState
                                                 #attribute through the entire
                                                 #simulation
+        self.povm = povm                        #Assigns a POVM object to the
+                                                #system
+
+    def measure(self):
+        """
+        Returns:
+        --------
+            scalar
+                pitch class number of the result from measurement operation
+        """
+        pass
+
+    def update_after_measurement(self):
+        """
+        Returns:
+        --------
+            vector
+                updated state after measurement
+        """
+        pass
+
+    def update_after_propogator(self):
+        """
+        Returns:
+        --------
+            vector
+                updated state after propogator applied
+        """
+        return np.dot(self.propogator(self.t), self.initialState)
 
     def schrodinger(self):
         """
@@ -83,9 +111,7 @@ class System(object):
         """
         while self.t < self.tFinal:
             self.t += self.dt
-            u = self.propogator(self.t)
-            self.currentState = np.dot(u, self.initialState)
+            self.currentState = self.update_after_propogator()
             self.history.append(self.currentState)
             if abs(self.norm() - 1) >= .5:
                 self.renormalize()
-
