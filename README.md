@@ -23,13 +23,17 @@ git submodule update --init --recursive
 
 #### Conan
 
-[conan](https://conan.io/) is a package manager for C/C++ libraries.
-
+[conan](https://conan.io/) is a package manager for C/C++ libraries.  
+To install, you need Python >=2.7 with pip, which should come by default:
+```
+pip install conan
+```
+Then, go to the repository's root directory and do
 ```
 conan install .
 ```
 
-This should install the required libraries that Qsys will need to use when building.
+to install the required libraries that Qsys will need to use when building.
 
 #### Scons (cross platform)
 
@@ -49,6 +53,18 @@ This should create the required shared libraries under: ```bin/{platform}/libQSy
 **Note:** When running the above script, select your operating system from the list
 (ie if you're compiling on Linux, run `scons platform=linux`).
 
+#### CxxTest
+We are currently using [CxxTest](https://cxxtest.com/) to unit-test this library.
+To generate a test runner for a given test suite, run
+```
+cxxtestgen --error-printer -o test_runner.cpp [TestSuite].h
+```
+
+The runner can then be built via
+```
+g++ -o runner -I CXXTEST test_runner.cpp
+```
+
 ## Files
 `README.md` - this file  
 `LICENSE` - the MIT license for this project  
@@ -58,17 +74,7 @@ This should create the required shared libraries under: ```bin/{platform}/libQSy
 `library` - a folder containing all the code. Within it there are three subfolders:
   * `include` - the header files needed for the tests and source code
   * `src` - the source code for the library
-  * `tests` - tests for the source code
-
-## Testing
-We are currently using [CxxTest](https://cxxtest.com/) as our testing framework.
-For now, tests are located in `library/src` as header files ending in `Test.h`.  
-To create a test runner from them, one should (though admittedly this has yet to be tested)
-be able to run
-```
-../include/cxxtest-4.3/run/cxxtestgen
-```
-from `library/src`.
+  * `tests` - tests for the source code and header files
 
 # Contributing
 
