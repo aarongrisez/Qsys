@@ -26,7 +26,7 @@ git submodule update --init --recursive
 [conan](https://conan.io/) is a package manager for C/C++ libraries.
 
 ```
-conan install .
+conan install . -s compiler.libcxx=libstdc++11
 ```
 
 This should install the required libraries that Qsys will need to use when building.
