@@ -1,4 +1,4 @@
-# Qsys [![Build Status](https://travis-ci.org/aarongrisez/Qsys.svg?branch=master)](https://travis-ci.org/aarongrisez/Qsys) <img align='right' src='/QhordLogo.png'>
+# Qsys [![Build Status](https://travis-ci.org/aarongrisez/Qsys.svg?branch=master)](https://travis-ci.org/aarongrisez/Qsys) <img align='right' src='/QhordLogo.png'>[![CodeFactor](https://www.codefactor.io/repository/github/aarongrisez/qsys/badge)](https://www.codefactor.io/repository/github/aarongrisez/qsys)
 
 Qsys is a C++ library used in [Qhord](https://www.qhord.com/) to simulate a quantum particle.
 
