@@ -4,7 +4,7 @@ We :heart: contributions from our community! Thank you for taking the time to re
 
 | :bulb: | :question: | :bug: |
 | ------- | -------- | -------- |
-| **Have an idea for improvement?** Open an issue first and let's talk about it. | **Have a question on using the app?** Check out the [Getting Started Guide](docs/getting-started.md) and then open an issue. | **Did you find a bug?** Open an issue. |
+| **Have an idea for improvement?** Open an issue first and let's talk about it. | **Have a question on using the app?** Check out the [Getting Started Guide](getting-started.md) and then open an issue. | **Did you find a bug?** Open an issue. |
 
 ### How you can help
 
