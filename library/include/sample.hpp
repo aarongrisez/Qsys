@@ -1,5 +1,8 @@
-#include <Godot.hpp>
 
+#ifndef QSYS_SAMPLE_HPP
+#define QSYS_SAMPLE_HPP
+
+#include <Godot.hpp>
 #include <Reference.hpp>
 
 class Sample : public godot::GodotScript<godot::Reference> {
@@ -14,3 +17,5 @@ public:
 
 	godot::String get_data() const;
 };
+
+#endif
