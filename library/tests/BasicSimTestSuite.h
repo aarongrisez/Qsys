@@ -1,5 +1,5 @@
 #include "cxxtest/TestSuite.h"
-#include "../include/BasicSim.h"
+#include "../include/basic_sim.h"
 #include <complex>
 #include <eigen3/Eigen/Dense>
 #include <vector>

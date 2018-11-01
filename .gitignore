@@ -55,7 +55,10 @@ htmlcov
 *~
 
 # build directory
+!*.gdns
+!*.gdnlib
 bin
+
 
 #conan
 SConscript_conan
