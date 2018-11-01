@@ -1,10 +1,8 @@
 extends "res://addons/gut/test.gd"
 
 const Simple = preload("res://bin/QSys.gdns")
-const Simple2 = preload("res://bin/QSys1.gdns")
 
 onready var simple_instance = Simple.new()
-onready var simple_instance_1 = Simple2.new()
 
 func before_each():
 	pass
