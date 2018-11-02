@@ -13,8 +13,13 @@ void Simulator::_register_methods()
 
 }
 
+void Simulator::_setDimension(int rows, int columns){
+    _rows = rows;
+    _column = columns;
+}
+
 void Simulator::_setHamiltonian(godot::PoolVector2Array arr){
-    _hamiltonian = Eigen::Matrix3cd();
+    _hamiltonian = Eigen::MatrixXcd(_rows,_column);
     for(int x = 0; x < arr.size(); ++x){
         godot::Vector2 v =  arr[x];
         _hamiltonian(x) =  std::complex<double>(v.x,v.y);
@@ -22,19 +27,20 @@ void Simulator::_setHamiltonian(godot::PoolVector2Array arr){
 }
 
 void Simulator::_setPsi0(godot::PoolVector2Array arr){
-    _psi0 = Eigen::Vector3cd();
+    _psi0 = Eigen::VectorXcd(_column);
     for(int x = 0; x < arr.size(); ++x){
         godot::Vector2 v = arr[x];
-        _psi0 << std::complex<double>(v.x,v.y);
+        _psi0(x) = std::complex<double>(v.x,v.y);
     }
+    _currentState = Eigen::Vector3cd(_psi0);
 }
 
 
 void Simulator::_setPropigator(godot::PoolVector2Array arr){
-    _propagator = Eigen::Matrix3cd();
+    _propagator = Eigen::MatrixXcd(_rows,_column);
     for(int x = 0; x < arr.size(); ++x){
         godot::Vector2 v = arr[x];
-        _propagator << std::complex<double>(v.x,v.y);
+        _propagator(x) = std::complex<double>(v.x,v.y);
     }
 }
 
@@ -66,6 +72,20 @@ godot::PoolVector2Array Simulator::_getPropigator(){
     }
     return value;
 }
+
+void Simulator::_runOneStep(float delta){
+    _time += delta;
+    Eigen::MatrixXcd temp = _hamiltonian * delta * std::complex<double>(0,-1);
+    _propagator = Eigen::MatrixXcd(_rows,_column).Identity() + temp + Eigen::MatrixXcd(temp).pow(2)/2.0;
+
+    _currentState = _propagator * _currentState;
+
+}
+
+float Simulator::_getTime(){
+    return _time;
+}
+
 
 void Simulator::_init()
 {
