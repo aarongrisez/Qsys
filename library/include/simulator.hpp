@@ -7,7 +7,7 @@
 
 #include <Godot.hpp>
 #include <Reference.hpp>
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 #include <complex>
 class Simulator : public godot::GodotScript<godot::Reference>{
     GODOT_CLASS(Simulator)
@@ -26,10 +26,7 @@ public:
     godot::PoolVector2Array _getPsi0();
     godot::PoolVector2Array _getPropigator();
 
-
     static void _register_methods();
-
-
 };
 
 #endif //QSYS_SIMULATOR_H

@@ -17,7 +17,7 @@ void Simulator::_setHamiltonian(godot::PoolVector2Array arr){
     _hamiltonian = Eigen::Matrix3cd();
     for(int x = 0; x < arr.size(); ++x){
         godot::Vector2 v =  arr[x];
-        _hamiltonian << std::complex<double>(v.x,v.y);
+        _hamiltonian(x) =  std::complex<double>(v.x,v.y);
     }
 }
 
