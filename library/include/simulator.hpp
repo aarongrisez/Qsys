@@ -15,12 +15,14 @@ private:
     Eigen::Matrix3cd _hamiltonian;
     Eigen::Matrix3cd _propagator;
     Eigen::Vector3cd _psi0;
-public:
+    std::float _time; 
 
+public:
     void _init();
     void _setHamiltonian(godot::PoolVector2Array arr);
     void _setPsi0(godot::PoolVector2Array arr);
     void _setPropigator(godot::PoolVector2Array arr);
+    void _runOneStep();
 
     godot::PoolVector2Array _getHamiltonian();
     godot::PoolVector2Array _getPsi0();
