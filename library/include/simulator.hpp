@@ -18,8 +18,13 @@ private:
 public:
 
     void _init();
-    void _setHamiltonian(godot::PoolVector2Array& arr);
-    godot::PoolVector2Array _getHamiltonian();
+    void _setHamiltonian(godot::PoolVector2Array arr);
+    void _setPsi0(godot::PoolVector2Array arr);
+    void _setPropigator(godot::PoolVector2Array arr);
+
+    // godot::PoolVector2Array _getHamiltonian();
+    // godot::PoolVector2Array _getPsi0();
+    // godot::PoolVector2Array _getPropigator();
 
 
     static void _register_methods();
