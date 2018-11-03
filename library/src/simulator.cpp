@@ -76,7 +76,13 @@ godot::PoolVector2Array Simulator::_getPropigator(){
 void Simulator::_runOneStep(float delta){
     _time += delta;
     Eigen::MatrixXcd temp = _hamiltonian * delta * std::complex<double>(0,-1);
-    _propagator = Eigen::MatrixXcd(_rows,_column).Identity() + temp + Eigen::MatrixXcd(temp).pow(2)/2.0;
+
+    _propagator =  Eigen::MatrixXcd().Identity(_rows,_column);
+    for(int i = 1; i < 4; ++i){
+        Eigen::MatrixXcd().
+        _propagator += Eigen::MatrixXcd(temp) /2.0 ;
+    }
+    // _propagator = + temp + Eigen::MatrixXcd(temp).pow(2)/2.0f;
 
     _currentState = _propagator * _currentState;
 
