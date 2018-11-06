@@ -18,11 +18,10 @@ private:
     Eigen::VectorXcd _psi0;
     Eigen::VectorXcd _currentState;
     double _time;
-    int _rows;
-    int _column;
+    int _size;
 public:
     void _init();
-    void _setDimension(int x,int y);
+    void _setSize(int size);
     void _setHamiltonian(godot::PoolVector2Array arr);
     void _setPsi0(godot::PoolVector2Array arr);
     void _setPropigator(godot::PoolVector2Array arr);
