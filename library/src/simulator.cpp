@@ -11,6 +11,10 @@ void Simulator::_register_methods()
     godot::register_method("getPsi0", &Simulator::_getPsi0);
     godot::register_method("getPropigator", &Simulator::_getPropigator);
 
+    godot::register_method("setSize", &Simulator::_setSize);
+
+    godot::register_method("step", &Simulator::_runOneStep);
+
 }
 
 void Simulator::_setSize(int size){
