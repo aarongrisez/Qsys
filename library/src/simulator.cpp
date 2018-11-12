@@ -76,6 +76,15 @@ godot::PoolVector2Array Simulator::_getPropigator(){
     return value;
 }
 
+int factorial(int n) {
+    if (n == 0) {
+	return 1;
+    }
+    else {
+	return n * factorial(n - 1);
+    }
+}
+
 void Simulator::_runOneStep(float delta){
     _time += delta;
     Eigen::MatrixXcd temp = _hamiltonian * delta * std::complex<double>(0,-1);
@@ -86,10 +95,9 @@ void Simulator::_runOneStep(float delta){
         for(int b = 1; b < i; ++b){
             pwr *= temp;
         }
-        _propagator += pwr / ((float)i);
+        _propagator += pwr / ((float)factorial(i));
     }
     _currentState = _propagator * _currentState;
-
 }
 
 float Simulator::_getTime(){
