@@ -119,7 +119,6 @@ env.Append(LIBS=["godot-cpp.{}.{}.{}".format(env['platform'],env['target'],env['
 sources = []
 add_sources(sources, "library/src")
 
-gdnlib = Command('gdnlib', None, Copy('bin','./QSys.gdnlib'))
 library = env.SharedLibrary(target=env['build_root'].abspath + '/{}/QSys'.format(env['platform']), source=sources)
-SConscript('test/SConstruct',exports='env')
-Default(library,gdnlib)
+# SConscript('test/SConstruct',exports='env')
+Default(library)

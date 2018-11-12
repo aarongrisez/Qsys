@@ -12,7 +12,7 @@
 #include <string>
 #include "../include/json.hpp"
 
-#include "../include/BasicSim.h"
+#include "../include/basic_sim.h"
 
 using namespace std;
 using namespace Eigen;

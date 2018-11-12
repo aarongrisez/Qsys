@@ -1,0 +1,53 @@
+language: cpp
+
+# OS config, depends on actual 'os' in build matrix
+dist: trusty
+sudo: false
+
+env:
+  global:
+  - SCONS_CACHE=$HOME/.scons_cache
+  - SCONS_CACHE_LIMIT=1024
+  - OPTIONS="debug_symbols=no verbose=yes progress=no gdnative_wrapper=yes"
+
+cache:
+  directories:
+  - $SCONS_CACHE
+
+matrix:
+  include:
+  - env: STATIC_CHECKS=yes
+    os: linux
+    compiler: gcc
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-trusty-6.0
+        - ubuntu-toolchain-r-test
+        packages:
+        - clang-format-6.0
+        - libstdc++6 # >= 4.9 needed for clang-format-6.0
+
+  - env: PLATFORM=linux TOOLS=yes TARGET=debug CACHE_NAME=${PLATFORM}-tools-mono-gcc EXTRA_ARGS="module_mono_enabled=yes mono_glue=no werror=yes"
+    os: linux
+    compiler: gcc
+
+  - env: PLATFORM=linux TOOLS=no TARGET=release CACHE_NAME=${PLATFORM}-clang EXTRA_ARGS="werror=yes"
+    os: linux
+    compiler: clang
+
+  - env: PLATFORM=osx TOOLS=yes TARGET=debug CACHE_NAME=${PLATFORM}-tools-clang
+    os: osx
+    compiler: clang
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install conan; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install conan; fi
+  misc/travis/godot-headless.sh
+  git submodule update --init --recursive
+  conan install . -s compiler.libcxx=libstdc++11
+
+script:
+  misc/travis/godot-cpp-build.sh
+  scons -j2 CC=$CC CXX=$CXX platform=$PLATFORM tools=$TOOLS target=$TARGET $EXTRA_ARGS $OPTIONS;
+  ./godot -s addons/gut/gut_cmdln.gd -d --path ./ -gprefix=test -gdir=res://test/unit -glog=3
