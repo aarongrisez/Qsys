@@ -21,6 +21,7 @@ func assert_eq_thresholded(vec1,vec2,epsilon,message):
 
 func test_simulator_propigator():
 	var instance = simulator.new()
+	instance.setSize(3)
 	instance.setHamiltonian([Vector2(5,.1),Vector2(6,2),Vector2(1.2,.1),
 							Vector2(3,.1),Vector2(2,.1),Vector2(.2,.4),
 							Vector2(4,.2),Vector2(.5,.1),Vector2(3,.1)])
