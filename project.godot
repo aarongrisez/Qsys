@@ -14,6 +14,10 @@ config/name="QSys"
 run/main_scene="res://test/tests.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+utility="*res://test/utility.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "gut" )
