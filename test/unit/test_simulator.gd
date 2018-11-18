@@ -19,7 +19,7 @@ func assert_eq_thresholded(vec1,vec2,epsilon,message):
 	assert_eq(abs(vec1.y - vec2.y) < epsilon,true,message)
 	
 
-func test_simulator_propigator():
+func test_simulator_hamiltonian():
 	var instance = simulator.new()
 	instance.setSize(3)
 	instance.setHamiltonian([Vector2(5,.1),Vector2(6,2),Vector2(1.2,.1),
@@ -35,5 +35,16 @@ func test_simulator_propigator():
 	assert_eq_thresholded(result[6],Vector2(4,.2),.1,"mismatch for hamiltonian")
 	assert_eq_thresholded(result[7],Vector2(.5,.1),.1,"mismatch for hamiltonian")
 	assert_eq_thresholded(result[8],Vector2(3,.1),.1,"mismatch for hamiltonian")
-	
+
+func test_simulator_propogator():
+	var instance = simulator.new()
+	instance.setSize(3)
+	instance.setPsi0([Vector2(5,.1),Vector2(6,2),Vector2(1.2,.1)])
+	instance.setHamiltonian([Vector2(5,.1),Vector2(6,2),Vector2(1.2,.1),
+							Vector2(3,.1),Vector2(2,.1),Vector2(.2,.4),
+							Vector2(4,.2),Vector2(.5,.1),Vector2(3,.1)])
+	var size1 = instance.getCurrentStateSize()
+	instance.step(.01)
+	var x = instance.getPropagator()
+	print(x)
 	
