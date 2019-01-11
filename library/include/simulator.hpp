@@ -10,6 +10,8 @@
 #include <Eigen/Dense>
 #include <unsupported/Eigen/MatrixFunctions>
 #include <complex>
+#include <random>
+#include <vector>
 
 class Simulator : public godot::GodotScript<godot::Reference>{
     GODOT_CLASS(Simulator)
@@ -19,14 +21,19 @@ private:
     Eigen::MatrixXcd _propagator;
     Eigen::VectorXcd _psi0;
     Eigen::VectorXcd _currentState;
+    std::vector<double> _probabilityDensity;
     void _setPropagator(Eigen::MatrixXcd arr);
     double _time;
     int _size;
+    int _result;
+    int _sampleProbabilityDensity();
     godot::String _errorMessage;
+    std::default_random_engine _gen;
 
 public:
+    Simulator();
     void _init();
-    void _setSize(int size);
+    void _setSize(const int size);
     void _setHamiltonian(godot::PoolVector2Array arr);
     void _setPsi0(godot::PoolVector2Array arr);
     void _runOneStep(float delta);
@@ -39,7 +46,7 @@ public:
     godot::PoolRealArray _getProbabilityDensity();
     godot::PoolVector2Array _getHamiltonian();
     godot::PoolVector2Array _getPsi0();
-    godot::PoolVector2Array _measure();
+    int _measure();
     godot::PoolVector2Array _getCurrentState();
     godot::PoolVector2Array _getPropagator();
 
