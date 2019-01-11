@@ -17,33 +17,16 @@ func after_all():
 func assert_eq_thresholded(vec1,vec2,epsilon,message):
 	assert_eq(abs(vec1.x - vec2.x) < epsilon,true,message)
 	assert_eq(abs(vec1.y - vec2.y) < epsilon,true,message)
-	
-
-func test_simulator_hamiltonian():
-	var instance = simulator.new()
-	instance.setHamiltonian([Vector2(5,.1),Vector2(6,2),Vector2(1.2,.1),
-							Vector2(3,.1),Vector2(2,.1),Vector2(.2,.4),
-							Vector2(4,.2),Vector2(.5,.1),Vector2(3,.1)])
-	var result = instance.getHamiltonian()
-	assert_eq_thresholded(result[0],Vector2(5,.1),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[1],Vector2(6,2),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[2],Vector2(1.2,.1),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[3],Vector2(3,.1),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[4],Vector2(2,.1),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[5],Vector2(.2,.4),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[6],Vector2(4,.2),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[7],Vector2(.5,.1),.1,"mismatch for hamiltonian")
-	assert_eq_thresholded(result[8],Vector2(3,.1),.1,"mismatch for hamiltonian")
 
 func test_simulator_propogator():
 	var instance = simulator.new()
 	instance.setSize(3)
-	instance.setPsi0([Vector2(5,.1),Vector2(6,2),Vector2(1.2,.1)])
-	instance.setHamiltonian([Vector2(5,.1),Vector2(6,2),Vector2(1.2,.1),
-							Vector2(3,.1),Vector2(2,.1),Vector2(.2,.4),
-							Vector2(4,.2),Vector2(.5,.1),Vector2(3,.1)])
-	var size1 = instance.getCurrentStateSize()
-	instance.step(.01)
-	var x = instance.getPropagator()
-	print(x)
-	
+	instance.setPsi0([Vector2(0,0),Vector2(0,0),Vector2(1,0)])
+	instance.setHamiltonian([Vector2(0.4147272586872562,0),Vector2(0.2849716083377269,0.01667585975115329),Vector2(0.5792858065923596,0.04493069203570912),
+							 Vector2(0.2849716083377269,-0.01667585975115329),Vector2(0.17632777798815139,0),Vector2(0.44357036381369286,0.03592326101885296),
+							 Vector2(0.5792858065923596,-0.04493069203570912),Vector2(0.44357036381369286,-0.03592326101885296),Vector2(0.7027700178027618,0)])
+	for i in range(5001):
+		instance.step(.01)
+	print(instance.getCurrentState())
+	print(instance.getProbabilityDensity())
+	#print(instance.getErrorMessage())

@@ -13,6 +13,7 @@
 
 class Simulator : public godot::GodotScript<godot::Reference>{
     GODOT_CLASS(Simulator)
+
 private:
     Eigen::MatrixXcd _hamiltonian;
     Eigen::MatrixXcd _propagator;
@@ -21,6 +22,8 @@ private:
     void _setPropagator(Eigen::MatrixXcd arr);
     double _time;
     int _size;
+    godot::String _errorMessage;
+
 public:
     void _init();
     void _setSize(int size);
@@ -32,8 +35,12 @@ public:
 	int _getPropagatorCols();
     float _getTime();
 
+    godot::String _getErrorMessage();
+    godot::PoolRealArray _getProbabilityDensity();
     godot::PoolVector2Array _getHamiltonian();
     godot::PoolVector2Array _getPsi0();
+    godot::PoolVector2Array _measure();
+    godot::PoolVector2Array _getCurrentState();
     godot::PoolVector2Array _getPropagator();
 
     static void _register_methods();

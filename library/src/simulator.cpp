@@ -1,4 +1,5 @@
 #include "simulator.hpp"
+#include <iostream>
 
 
 void Simulator::_register_methods()
@@ -10,7 +11,9 @@ void Simulator::_register_methods()
     godot::register_method("getPsi0", &Simulator::_getPsi0);
     godot::register_method("getPropagator", &Simulator::_getPropagator);
     godot::register_method("getCurrentStateSize", &Simulator::_getCurrentStateSize);
-
+    godot::register_method("getCurrentState", &Simulator::_getCurrentState);
+    godot::register_method("getProbabilityDensity", &Simulator::_getProbabilityDensity);
+    godot::register_method("getErrorMessage", &Simulator::_getErrorMessage);
     godot::register_method("setSize", &Simulator::_setSize);
 
     godot::register_method("step", &Simulator::_runOneStep);
@@ -37,6 +40,7 @@ void Simulator::_setPsi0(godot::PoolVector2Array arr){
     }
     _currentState = Eigen::Vector3cd(_psi0);
 }
+
 godot::PoolVector2Array Simulator::_getHamiltonian(){
     godot::PoolVector2Array value;
     for(int x = 0; x < _hamiltonian.size(); ++x){
@@ -55,6 +59,15 @@ godot::PoolVector2Array Simulator::_getPsi0(){
     }
     return value;
 }
+godot::PoolVector2Array Simulator::_getCurrentState(){
+	godot::PoolVector2Array value;
+    for(int x = 0; x < _currentState.size(); ++x){
+        auto c =  _currentState(x); 
+        godot::Vector2 v = godot::Vector2(c.real(),c.imag());
+        value.append(v);
+    }
+    return value;
+}
 godot::PoolVector2Array Simulator::_getPropagator(){
     godot::PoolVector2Array value;
     for(int x = 0; x < _propagator.size(); ++x){
@@ -63,6 +76,17 @@ godot::PoolVector2Array Simulator::_getPropagator(){
         value.append(v);
     }
     return value;
+}
+
+godot::PoolRealArray Simulator::_getProbabilityDensity() {
+    godot::PoolRealArray density;
+    std::complex<double> temp;
+    for (int x = 0; x < _size; ++x) {
+        temp = _currentState[x] * std::conj(_currentState[x]);
+        float c = temp.real();
+        density.append(c);
+    }
+        return density;
 }
 
 int factorial(int n) {
@@ -85,6 +109,7 @@ int Simulator::_getPropagatorRows() {
 int Simulator::_getPropagatorCols() {
 	return _propagator.cols();
 }
+
 void Simulator::_setPropagator(Eigen::MatrixXcd temp){
 	_propagator = temp.exp();
 }
@@ -103,4 +128,8 @@ float Simulator::_getTime(){
 
 void Simulator::_init()
 {
+}
+
+godot::String Simulator::_getErrorMessage() {
+    return _errorMessage;
 }
