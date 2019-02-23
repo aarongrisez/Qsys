@@ -80,6 +80,8 @@ g++ -o runner -I CXXTEST test_runner.cpp
 
 Please reach out to us at [http://qhord.com/](http://qhord.com/) or email Aaron at aaron@qhord.com for info about contributing.
 
+Starting in 2019, we're using Jira! [link]. 
+
 ## Maintainers
 
 The current maintainers of this repository are:
